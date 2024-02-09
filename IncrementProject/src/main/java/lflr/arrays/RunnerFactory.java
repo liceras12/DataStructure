@@ -2,6 +2,7 @@ package lflr.arrays;
 
 import lflr.arrays.interfaces.IRunner;
 import lflr.arrays.linkedlists.LinkedListRunner;
+import lflr.arrays.stacks.StackRunner;
 
 import java.util.Queue;
 
@@ -10,9 +11,9 @@ public class RunnerFactory {
         switch (structureID){
             case "A":
                 return new LinkedListRunner();
-            /*case "B":
+            case "B":
                 return new StackRunner();
-            case "C":
+            /*case "C":
                 return new QueueRunner();*/
             default:
                 return new NullRunner();
