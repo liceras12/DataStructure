@@ -1,11 +1,11 @@
-package lflr.arrays.linkedlists;
+package lflr.arrays.queues;
 
-public class Node {
+public class NodeDouble {
     int data;
-    Node next;
-    Node prev;
+    NodeDouble next;
+    NodeDouble prev;
 
-    public Node(int data){
+    public NodeDouble(int data){
         this.data = data;
         this.next = null;
         this.prev = null;

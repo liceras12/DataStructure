@@ -7,6 +7,7 @@ public class GNode {
         this.value = value;
     }
 
+
     public String getValue() {
         return value;
     }

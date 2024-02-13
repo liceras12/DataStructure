@@ -1,5 +1,6 @@
 package lflr.arrays.graph;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,48 +12,34 @@ public class Graph implements IGraph{
         graph = new java.util.HashMap<>();
     }
 
-    /**
-     * @return
-     */
     @Override
     public int getNumberOfNodes() {
-        return 0;
+        return graph.size();
     }
 
-    /**
-     * @return
-     */
     @Override
     public List<GNode> getNodes() {
-        return null;
+        return new ArrayList<>(graph.keySet());
     }
 
-    /**
-     * @return
-     */
     @Override
     public int numberOfEdges() {
-        return 0;
+        int count = 0;
+        for  (List<GEdge> edges : graph.values()){
+            count += edges.size();
+        }
+        return count;
     }
 
-    /**
-     * @return
-     */
     @Override
     public List<GEdge> getEdges() {
-        List<GEdge> returnEdges = new java.util.ArrayList<>();
-        for (GNode key : graph.keySet()){
-            List<GEdge> edges = graph.get(key);
+        List<GEdge> returnEdges = new ArrayList<>();
+        for (List<GEdge> edges : graph.values()){
             returnEdges.addAll(edges);
         }
         return returnEdges;
     }
 
-    /**
-     * @param source
-     * @param destination
-     * @return
-     */
     @Override
     public GEdge getEdge(GNode source, GNode destination) {
         List<GEdge> edges = graph.get(source);
@@ -64,19 +51,11 @@ public class Graph implements IGraph{
         return null;
     }
 
-    /**
-     * @param node
-     * @return
-     */
     @Override
     public int outDegree(GNode node) {
         return graph.get(node).size();
     }
 
-    /**
-     * @param node
-     * @return
-     */
     @Override
     public int inDegree(GNode node) {
         int counter = 0;
@@ -91,19 +70,11 @@ public class Graph implements IGraph{
         return counter;
     }
 
-    /**
-     * @param node
-     * @return
-     */
     @Override
     public List<GEdge> outgoingEdges(GNode node) {
-        return graph.get(node);
+        return graph.getOrDefault(node, new ArrayList<>());
     }
 
-    /**
-     * @param node
-     * @return
-     */
     @Override
     public List<GEdge> incomingEdges(GNode node) {
         for (GNode key : graph.keySet()){
@@ -117,44 +88,35 @@ public class Graph implements IGraph{
         return null;
     }
 
-    /**
-     * @param node
-     */
     @Override
     public void addNode(GNode node) {
-        graph.putIfAbsent(node, new java.util.ArrayList<>());
+        graph.putIfAbsent(node, new ArrayList<>());
     }
 
     @Override
     public void addEdge(GNode source, GNode destination, int weight) {
-
+        List<GEdge> edges = graph.computeIfAbsent(source, k -> new ArrayList<>());
+        edges.add(new GEdge(source.getValue(), destination.getValue(), weight));
     }
 
-    /**
-     * @param source
-     * @param destination
-     * @param weight
-     */
-   /* @Override
-    public void addEdge(String source, String destination, int weight) {
+    /*public void addEdge(String source, String destination, int weight) {
         List currentNodeEdges = graph.get(source);
         currentNodeEdges.add(new GEdge(source, destination, weight));
     }*/
 
-    /**
-     * @param node
-     */
     @Override
     public void removeNode(GNode node) {
         graph.remove(node);
+        for (List<GEdge> edges : graph.values()) {
+            edges.removeIf(edge -> edge.getDestination().equals(node));
+        }
     }
 
-    /**
-     * @param edge
-     */
     @Override
     public void removeEdge(GEdge edge) {
-        List<GEdge> currentEdges = graph.get(edge.getSource());
-        currentEdges.remove(edge);
+        List<GEdge> edges = graph.get(edge.getSource());
+        if (edges != null) {
+            edges.remove(edge);
+        }
     }
 }

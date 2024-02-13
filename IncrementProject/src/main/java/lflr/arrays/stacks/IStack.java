@@ -12,6 +12,7 @@ public interface IStack<E> {
     boolean isEmpty();
 
     /**
+     * Add an element to the top of the stack
      * @param data the element to be added to the stack
      */
     void push(E data);
@@ -22,6 +23,7 @@ public interface IStack<E> {
     E top();
 
     /**
+     * Remove the top element of the stack
      * @return the top element of the stack and remove it from the stack
      */
     E pop();

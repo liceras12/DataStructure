@@ -1,15 +1,16 @@
-package lflr.arrays.linkedlists;
+package lflr.arrays.queues;
 
-public class LinkedList implements ILinkedList{
+public class LinkedList<F> implements ILinkedList<F> {
 
-    Node head;
+    Node<F> head;
+
     @Override
     public int size() {
         if (isEmpty()){
             return 0;
         }
         int size = 0;
-        Node current = head;
+        Node<F> current = head;
         while (current != null){
             size++;
             current = current.next;
@@ -23,13 +24,13 @@ public class LinkedList implements ILinkedList{
     }
 
     @Override
-    public Node first() {
+    public Node<F> first() {
         return head;
     }
 
     @Override
-    public Node last() {
-        Node current  = head;
+    public Node<F> last() {
+        Node<F> current  = head;
         while (current != null){
             if (current.next == null){
                 return current;
@@ -40,8 +41,8 @@ public class LinkedList implements ILinkedList{
     }
 
     @Override
-    public void addFirst(int data) {
-        Node newNode = new Node(data);
+    public void addFirst(F data) {
+        Node<F> newNode = new Node<F>(data);
         if (isEmpty()){
             head = newNode;
             return;
@@ -51,17 +52,16 @@ public class LinkedList implements ILinkedList{
     }
 
     @Override
-    public void addLast(int data) {
-        if (head == null){
+    public void addLast(F data) {
+        if (last() == null){
             addFirst(data);
-        }else {
-            Node lastNode = last();
-            lastNode.next = new Node(data);
         }
+        Node<F> lastNode = last();
+        lastNode.next = new Node<F>(data);
     }
 
     @Override
-    public void  removeFirst() {
+    public void removeFirst() {
         if (isEmpty()) {
             System.out.println("The linked list is empty");
             return;
@@ -70,7 +70,7 @@ public class LinkedList implements ILinkedList{
     }
 
     public void print(){
-        Node current = head;
+        Node<F> current = head;
         while (current != null){
             System.out.println(current.data);
             current = current.next;
