@@ -12,6 +12,9 @@ public class Person {
         this.name = name;
         this.age = age;
     }
+    public String getName(){
+        return this.name;
+    }
 
     public void print(){
         System.out.println("Name: " + this.name + " Age: " + this.age);

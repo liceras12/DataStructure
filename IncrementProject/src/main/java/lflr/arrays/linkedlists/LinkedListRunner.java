@@ -8,14 +8,17 @@ import java.util.Scanner;
 public class LinkedListRunner implements IRunner {
     private static final Scanner scannerText = new Scanner(System.in);
     private static final Scanner scannerNumber = new Scanner(System.in);
-    public static int finish = 1;
     public static LinkedList list = new LinkedList();
     public static DoubleLinkedList doubleList = new DoubleLinkedList();
+    public static int finish = 1;
     @Override
     public void run() {
         System.out.println("Choose a Linked list type");
         System.out.println("A. Linked list");
         System.out.println("B. Double linked list");
+        System.out.println("C. Exit to main menu");
+        finish = 1;
+
         switch (inputOption()){
             case "A":
                 while (finish != 0){
@@ -29,19 +32,13 @@ public class LinkedListRunner implements IRunner {
                     executeDoubleLinkedList();
                 }
                 break;
+            case "C":
+                Main.main(null);
+                break;
             default:
+                System.out.println("Invalid option");
                 break;
         }
-        /*
-        list.addFirst(7);
-        list.addFirst(12);
-        list.addLast(13);
-        list.removeFirst();
-        list.addFirst(24);
-        while (finish != 0){
-            printMenu();
-            executeLinkedList();
-        }*/
     }
 
     public static void printMenu(){
@@ -53,7 +50,7 @@ public class LinkedListRunner implements IRunner {
         System.out.println("c. Add a node at last");
         System.out.println("d. Remove a node at first");
         System.out.println("e. See the size of the linked list");
-        System.out.println("f. Linked list exit");
+        System.out.println("f. Exit to linked list menu");
         System.out.println("//////////////////////////////////////////");
     }
 
@@ -64,13 +61,25 @@ public class LinkedListRunner implements IRunner {
 
     public static int inputValue() {
         System.out.println("Enter a value: ");
-        return scannerNumber.nextInt();
+        String value = scannerText.nextLine();
+        try {
+            Integer.parseInt(value);
+            int valueInt = Integer.parseInt(value);
+            return valueInt;
+        } catch (NumberFormatException exception) {
+            System.out.println("Is not a integer number, try again");
+            return inputValue();
+        }
     }
 
     public static void executeLinkedList(){
         switch (inputOption()){
             case "a":
-                list.print();
+                if (list.isEmpty()){
+                    System.out.println("The linked list is empty");
+                } else {
+                    list.print();
+                }
                 break;
             case "b":
                 list.addFirst(inputValue());
@@ -80,17 +89,20 @@ public class LinkedListRunner implements IRunner {
                 list.addLast(inputValue());
                 break;
             case "d":
-                list.removeFirst();
+                if (list.isEmpty()){
+                    System.out.println("The linked list is empty");
+                } else {
+                    list.removeFirst();
+                }
                 break;
             case "e":
                 System.out.println("linked list size is: " + list.size());
                 break;
             case "f":
-                scannerText.close();
-                scannerNumber.close();
                 finish = 0;
                 break;
             default:
+                System.out.println("Invalid option");
                 finish = 0;
                 break;
         }
@@ -106,14 +118,18 @@ public class LinkedListRunner implements IRunner {
         System.out.println("d. Remove a node at first");
         System.out.println("e. Remove a node at last");
         System.out.println("f. See the size of the linked list");
-        System.out.println("g. Linked list exit");
+        System.out.println("g. Exit to linked list menu");
         System.out.println("//////////////////////////////////////////");
     }
 
     public static void executeDoubleLinkedList(){
         switch (inputOption()){
             case "a":
-                doubleList.print();
+                if (doubleList.isEmpty()){
+                    System.out.println("The double linked list is empty");
+                } else {
+                    doubleList.print();
+                }
                 break;
             case "b":
                 doubleList.addFirst(inputValue());
@@ -123,20 +139,28 @@ public class LinkedListRunner implements IRunner {
                 doubleList.addLast(inputValue());
                 break;
             case "d":
-                doubleList.removeFirst();
+                if (doubleList.isEmpty()){
+                    System.out.println("The double linked list is empty");
+                } else {
+                    doubleList.removeFirst();
+                }
                 break;
             case "e":
-                doubleList.removeLast();
+                if (doubleList.isEmpty()){
+                    System.out.println("The double linked list is empty");
+                } else {
+                    doubleList.removeLast();
+                }
                 break;
             case "f":
                 System.out.println("linked list size is: " + doubleList.size());
                 break;
             case "g":
-                scannerText.close();
-                scannerNumber.close();
+
                 finish = 0;
                 break;
             default:
+                System.out.println("Invalid option");
                 finish = 0;
                 break;
         }

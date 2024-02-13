@@ -1,7 +1,7 @@
-package lflr.arrays.stacks;
+package lflr.arrays.queues;
 
 
-public interface ILinkedList<E> {
+public interface ILinkedList<F> {
     /**
      * @return the number of elements in the list
      */
@@ -15,22 +15,22 @@ public interface ILinkedList<E> {
     /**
      * @return the first element of the list
      */
-    Node<E> first();
+    Node<F> first();
 
     /**
      * @return the last element of the list
      */
-    Node<E> last();
+    Node<F> last();
 
     /**
      * @param data the element to be added to the list
      */
-    void addFirst(E data);
+    void addFirst(F data);
 
     /**
      * @param data the element to be added to the list
      */
-    void addLast(E data);
+    void addLast(F data);
 
     /**
      * Remove the first element of the list
