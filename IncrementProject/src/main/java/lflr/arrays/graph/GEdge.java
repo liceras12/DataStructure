@@ -1,21 +1,21 @@
 package lflr.arrays.graph;
 
 public class GEdge {
-    private String source;
-    private String destination;
+    private GNode source;
+    private GNode destination;
     private int weight;
 
-    public GEdge(String source, String destination, int weight) {
+    public GEdge(GNode source, GNode destination, int weight) {
         this.source = source;
         this.destination = destination;
         this.weight = weight;
     }
 
-    public String getSource() {
+    public GNode getSource() {
         return source;
     }
 
-    public String getDestination() {
+    public GNode getDestination() {
         return destination;
     }
 
