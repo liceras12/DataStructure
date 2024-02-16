@@ -52,4 +52,10 @@ public class SortingMergeSort implements ISortingMergeSort {
         count++;
         return array;
     }
+
+    public void printArray(int[] array){
+        for (int i = 0; i < array.length; i++){
+            System.out.println(array[i]);
+        }
+    }
 }
