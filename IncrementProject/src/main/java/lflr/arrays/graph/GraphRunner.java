@@ -67,5 +67,47 @@ public class GraphRunner implements IRunner {
     }
 
     public void executeGraph() {
+        switch (inputOption()) {
+            case "a":
+                System.out.println("Enter the node name: ");
+                String nodeName = inputOption();
+                GNode node = new GNode(nodeName);
+                graph.addNode(node);
+                break;
+            case "b":
+                System.out.println("Enter the source node name: ");
+                String sourceNodeName = inputOption();
+                System.out.println("Enter the destination node name: ");
+                String destinationNodeName = inputOption();
+                GNode sourceNode = new GNode(sourceNodeName);
+                GNode destinationNode = new GNode(destinationNodeName);
+                //GEdge edge = new GEdge(sourceNode, destinationNode, inputValue());
+                graph.addEdge(sourceNode, destinationNode, inputValue());
+                break;
+            case "c":
+                graph.print();
+                break;
+            case "d":
+                graph.removeGraph();
+                break;
+            case "e":
+                System.out.println("The number of nodes is: " + graph.getNumberOfNodes());
+                break;
+            case "f":
+                System.out.println("The number of edges is: " + graph.numberOfEdges());
+                break;
+            case "g":
+                System.out.println("The list of nodes is: " + graph.getNodes());
+                break;
+            case "h":
+                System.out.println("The list of edges is: " + graph.getEdges());
+                break;
+            case "i":
+                finish = 0;
+                break;
+            default:
+                System.out.println("Invalid option");
+                break;
+        }
     }
 }
