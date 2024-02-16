@@ -1,24 +1,30 @@
 package lflr.arrays;
 
+
+import java.util.Scanner;
+
 public class Main {
+
+    private static Scanner scannerText = new Scanner(System.in);
+
     public static void main(String[] args) {
         printMenu();
-
-        //take user input
-        IManager manager = ManagerFactory.getManager(1);
-        manager.printMenu();
-        manager.run();
+        String option = inputOption();
+        int finish = 1;
+        while (finish != 0){
+            IManager manager = ManagerFactory.getManager(option);
+            manager.run();
+        }
     }
 
     public static void printMenu(){
-        System.out.println("Welcome");
-        System.out.println("1. LinkedList");
-        System.out.println("2. Stacks");
-        System.out.println("3. Queues");
-        System.out.println("4. Trees");
-        System.out.println("5. Graphs");
-        System.out.println("6. 1 Sorting");
-        System.out.println("7. 2 Sorting");
-        System.out.println("8. 3 Sorting");
+        System.out.println("Choose a data structure");
+        System.out.println("A. Menu Attention");
+        System.out.println("B. Exit to application");
+    }
+
+    public static String inputOption() {
+        System.out.println("Enter your choice: ");
+        return scannerText.nextLine();
     }
 }
