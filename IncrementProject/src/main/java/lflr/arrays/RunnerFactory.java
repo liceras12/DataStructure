@@ -1,9 +1,11 @@
 package lflr.arrays;
 
 import lflr.arrays.binarytrees.BinaryTreeRunner;
+import lflr.arrays.graph.GraphRunner;
 import lflr.arrays.interfaces.IRunner;
 import lflr.arrays.linkedlists.LinkedListRunner;
 import lflr.arrays.queues.QueueRunner;
+import lflr.arrays.sorting.SortingMergeSortRunner;
 import lflr.arrays.stacks.StackRunner;
 
 public class RunnerFactory {
@@ -17,6 +19,10 @@ public class RunnerFactory {
                 return new QueueRunner();
             case "D":
                 return new BinaryTreeRunner();
+            case "E":
+                return new GraphRunner();
+            case "F":
+                return new SortingMergeSortRunner();
             case "G":
                 System.exit(0);
                 return null;
